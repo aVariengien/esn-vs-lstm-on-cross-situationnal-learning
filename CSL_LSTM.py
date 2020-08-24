@@ -192,7 +192,7 @@ nb_objects = 4 #number of object in the vocabulary used to generate the sentence
 
 special_value = -42 #special value for masking
 batch_size = 2
-nb_epoch = 3
+nb_epoch = 35
 lstm_units = 20
 dropout = 0
 test_version = True #if we just create a model to do the task (named "model" in the code)
