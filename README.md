@@ -32,6 +32,7 @@ This work includes:
     * `xp_variable_nb_objects_ESN.sh` and `xp_variable_nb_objects_LSTM.sh` - `bash` program to evaluate performance of the models on data sets with different number of objects.
     * `theoritical_model_bag_of_words.py` - implementation of the theoritical model based on an interpretation of sentences as bag of words.
     
+  Some model saves are shared in the folders `saved_ESN` and `saved_LSTM` to be able to test the RSSviz.
 ## Requirements
 The python modules needed to run the code.
 * For the ESN:
