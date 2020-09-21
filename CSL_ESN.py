@@ -163,6 +163,8 @@ N = 1000 #the size of the reservoir
 
 minimal_mode = False #if minimal mode is on, the ESN will only be trained and tested on test set. The only text print will be "nb of objects, valid error on test set, exact error on test set, RMSE on test set, time to train"
 
+## Handling the arguments when the script is ran in a shell
+
 if len(sys.argv) > 1:
     if "-h" in sys.argv:
         print("Argument: number of objects (int), minimal mode (int : 0 or 1)")
@@ -386,7 +388,7 @@ if __name__ == "__main__":
 
         #sample sentences for model analysis
         test_sent = ["BEGIN on the middle is a green glass and that is a orange bowl END", #0
-        "BEGIN and on the middle is a green glass and that is a orange bowl END",
+        "BEGIN on the middle is a green glass and that is a orange bowl END",
         "BEGIN a blue bowl is on the right and on the right there is the blue bowl END",
         "BEGIN on the middle there is the orange and the orange on the middle is orange END", #3
         "BEGIN the orange is orange and on the middle there is the green cup END",

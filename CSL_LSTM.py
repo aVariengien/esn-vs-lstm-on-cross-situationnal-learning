@@ -211,6 +211,9 @@ minimal_mode = False #if minimal mode is on, the model will only be trained and 
 
 verbose_training = True
 
+
+## Handling the arguments when the script is ran in a shell
+
 if len(sys.argv) > 1:
     if "-h" in sys.argv:
         print("Argument: number of objects (int), minimal mode (int : 0 or 1)")
@@ -343,12 +346,12 @@ validationX_pad = padding(validationX, max_seq_len = max_seq_len)
 if __name__ == "__main__":
 
     if use_save_version:
-        model = keras.models.load_model(path + "best_model"+rand_id+".hdf5")
+        model = keras.models.load_model(path + "best_model"+model_id+".hdf5")
         if test_version:
-            model_for_test = keras.models.load_model(path + "best_model_for_test"+rand_id+".hdf5")
+            model_for_test = keras.models.load_model(path + "best_model_for_test"+model_id+".hdf5")
 
     else:
-        rand_id = str(np.random.random()) #random id used for the file names during the model save
+        model_id = str(np.random.random()) #random id used for the file names during the model save
 
         #build the model
         if test_version:
@@ -377,7 +380,7 @@ if __name__ == "__main__":
 
         if not(minimal_mode):
             history = LossHistory() #to get the evolution of the loss during training
-            checkpoint = ModelCheckpoint("saved_LSTM/best_model"+rand_id+".hdf5",
+            checkpoint = ModelCheckpoint("saved_LSTM/best_model"+model_id+".hdf5",
                                         monitor='loss', verbose=1,
                                         mode='auto', period=1) #we save the model after each epoch of training
 
@@ -396,7 +399,7 @@ if __name__ == "__main__":
             print("End of training !")
             print("CPU Time to train : ", t2 -t1)
         if not(minimal_mode):
-            model_for_test.save("saved_LSTM/best_model_for_test"+rand_id+".hdf5")
+            model_for_test.save("saved_LSTM/best_model_for_test"+model_id+".hdf5")
             history.plot_loss()
 
 
@@ -415,7 +418,7 @@ if __name__ == "__main__":
     #qualitative analysis of the output of the LSTM
     if not(minimal_mode):
         test_sent = ["BEGIN on the middle is a green glass and that is a orange bowl END", #0
-        "BEGIN and on the middle is a green glass and that is a orange bowl END",
+        "BEGIN on the middle is a green glass and that is a orange bowl END",
         "BEGIN a blue bowl is on the right and on the right there is the blue bowl END",
         "BEGIN on the middle there is the orange and the orange on the middle is orange END", #3
         "BEGIN the orange is orange and on the middle there is the green cup END",
@@ -427,7 +430,7 @@ if __name__ == "__main__":
 
         #plot the final outputs on a test sentence
         outputs = test_with_sentences(test_sent , model)
-        ind = 2
+        ind = 9
         plot_final_activation(outputs[ind],
                             concepts_delimitations,
                             output_id_to_concept_dict,
@@ -451,7 +454,7 @@ if __name__ == "__main__":
                         model_for_test,
                         units_to_plot = 'all',
                         state = 'cell',
-                        plt_var = True,
+                        plt_var = False,
                         plt_sum = False)
 
 
